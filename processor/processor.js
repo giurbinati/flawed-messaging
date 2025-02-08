@@ -1,8 +1,8 @@
 const redis = require('redis');
-const { sendNotificationToExternalService } = require('./mockApi'); // Funzione per inviare la notifica al mock-api
-const { retryWithBackoff, circuitBreaker } = require('./utils'); // Utilità per retry e circuit breaker
+const { sendNotificationToExternalService } = require('./mockApi');
+const { retryWithBackoff, circuitBreaker } = require('./utils');
 
-const queue = redis.createClient(); // Crea client Redis
+const queue = redis.createClient();
 
 // Logica di elaborazione della notifica
 const processNotification = async (notification) => {
@@ -15,19 +15,17 @@ const processNotification = async (notification) => {
   }
 };
 
-// Funzione che avvia il loop per processare le notifiche
 const startProcessing = () => {
   queue.on('message', async (channel, message) => {
     const notification = JSON.parse(message);
 
-    // Retry con backoff esponenziale e gestione del circuito
     const result = await retryWithBackoff(() => processNotification(notification));
     if (result.error) {
       circuitBreaker.notifyFailure();
     }
   });
 
-  queue.subscribe('notificationsQueue'); // Si iscrive alla coda Redis
+  queue.subscribe('notificationsQueue');
 };
 
 module.exports = { startProcessing };

@@ -1,9 +1,9 @@
-const processor = require('./processor'); // La logica di elaborazione
-const { connectToQueue } = require('./queue'); // Connessione a Redis (coda)
+const processor = require('./processor');
+const { connectToQueue } = require('./queue');
 
 const startProcessor = async () => {
   await connectToQueue();
-  processor.startProcessing(); // Avvia la logica di elaborazione
+  processor.startProcessing();
 };
 
 startProcessor().catch((err) => console.error('Error starting processor:', err));
