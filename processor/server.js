@@ -1,5 +1,5 @@
 const processor = require('./processor');
-const { connectToQueue } = require('./queue');
+const { connectToQueue } = require('./queque');
 
 const startProcessor = async () => {
   await connectToQueue();

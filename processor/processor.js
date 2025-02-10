@@ -1,5 +1,5 @@
 const redis = require('redis');
-const { sendNotificationToExternalService } = require('./mockApi');
+const { sendNotificationToExternalService } = require('../mock-api/server');
 const { retryWithBackoff, circuitBreaker } = require('./utils');
 
 const queue = redis.createClient();

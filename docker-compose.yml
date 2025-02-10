@@ -68,7 +68,6 @@ services:
 
 networks:
   notification-network:
-  app-network:
 
 volumes:
   mongodb_data:
