@@ -1,5 +1,5 @@
 const redis = require('redis');
-const { sendNotificationToExternalService } = require('../mock-api/server');
+// const { sendNotificationToExternalService } = require('../mock-api/server');
 const { retryWithBackoff, circuitBreaker } = require('./utils');
 
 const queue = redis.createClient();
@@ -7,7 +7,7 @@ const queue = redis.createClient();
 // Logica di elaborazione della notifica
 const processNotification = async (notification) => {
   try {
-    await sendNotificationToExternalService(notification);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     console.log('Notification sent:', notification);
   } catch (err) {
     console.error('Failed to send notification:', err);

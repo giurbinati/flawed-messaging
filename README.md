@@ -6,7 +6,7 @@ Flawed Messaging System è un sistema di gestione delle notifiche che supporta l
 
 ## Funzionalità implementate
 
-- *POST /api/vl/notifications*: Endpoint per inviare notifiche via email o SMS.
+- *POST /api/v1/notifications*: Endpoint per inviare notifiche via email o SMS.
 - *Redis*: Coda per gestire le notifiche in attesa di invio.
 - *Servizio di processore*: Elabora le notifiche dalla coda e le invia a un servizio esterno simulato.
 - *Dashboard*: Un'interfaccia web per monitorare lo stato delle notifiche in tempo reale.

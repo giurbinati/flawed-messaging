@@ -44,9 +44,9 @@ services:
     networks:
       - notification-network
 
-  dashboard:
+  applicazione:
     build:
-      context: ./dashboard
+      context: ./applicazione
       dockerfile: Dockerfile
     ports:
       - "80:80"
